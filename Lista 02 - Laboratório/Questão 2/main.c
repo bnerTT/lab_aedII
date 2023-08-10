@@ -29,18 +29,19 @@ int diasDeAula(Data inicio, Data final)
             inicio.diaMax = 31;
         }
         int n;
-        int primeiraSegunda = 0;
+        //int primeiraSegunda = 0;
         for (n = inicio.dia; n <= inicio.diaMax; n += 7)
         {
             if (n >= inicio.diaMax)
             {
                 aux = n - inicio.diaMax;
                 inicio.mes++;
-                primeiraSegunda = aux;
+                inicio.dia = aux;
+                //primeiraSegunda = aux;
                 contAula++;
             }
             else {
-                primeiraSegunda = n;
+                //primeiraSegunda = n;
                 contAula++;
             }
         }
@@ -50,10 +51,12 @@ int diasDeAula(Data inicio, Data final)
 }
 
 int main(){
+    int res;
     Data inicio = {26,06,2023,30};
     Data final = {23,10,2023,0};
-    diasDeAula(inicio, final);
+    res = diasDeAula(inicio, final);
     printf("Dia: %i, Mês: %i, Ano: %i", inicio.dia, inicio.mes, inicio.ano);
+    printf("\n\n%d\n\n", res);
 
     return 0;
 }
