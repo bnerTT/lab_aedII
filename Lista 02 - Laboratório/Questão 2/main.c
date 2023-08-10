@@ -13,7 +13,7 @@ typedef struct data{
 
 int diasDeAula(Data inicio, Data final)
 {
-    int contAula = 0, primeiraSegunda, aux;
+    int contAula = 0, aux;
     for (inicio.mes = 6; inicio.mes <= final.mes;)
     {
         if(inicio.mes == 6) {
@@ -28,24 +28,31 @@ int diasDeAula(Data inicio, Data final)
         if(inicio.mes == 10) {
             inicio.diaMax = 31;
         }
-        for (int n = inicio.dia; n <= inicio.diaMax; n + 7)
+        int n;
+        int primeiraSegunda = 0;
+        for (n = inicio.dia; n <= inicio.diaMax; n += 7)
         {
             if (n >= inicio.diaMax)
             {
                 aux = n - inicio.diaMax;
                 inicio.mes++;
                 primeiraSegunda = aux;
+                contAula++;
             }
-            primeiraSegunda = n;
-            contAula++;
+            else {
+                primeiraSegunda = n;
+                contAula++;
+            }
         }
     }
+
+    return(contAula);
 }
 
 int main(){
-    int dias_de_aula;
-    Data inicio = {26,06,2023};
-    Data final = {23,10,2023};
+    Data inicio = {26,06,2023,30};
+    Data final = {23,10,2023,0};
+    diasDeAula(inicio, final);
     printf("Dia: %i, Mês: %i, Ano: %i", inicio.dia, inicio.mes, inicio.ano);
 
     return 0;
