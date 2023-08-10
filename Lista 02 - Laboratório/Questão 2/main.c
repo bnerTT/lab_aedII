@@ -8,26 +8,39 @@ typedef struct data{
     int dia;
     int mes;
     int ano;
+    int diaMax;
 } Data;
 
-
-int diasDeAula(Data inicio, Data final){
-    int contAula = 0, primeiraSegunda;
-    if(inicio.mes == 6){
-        primeiraSegunda = inicio.dia;
-        for(int n = primeiraSegunda; primeiraSegunda <= 30; n+7){
-            if()
-                primeiraSegunda += (n*7);
+int diasDeAula(Data inicio, Data final)
+{
+    int contAula = 0, primeiraSegunda, aux;
+    for (inicio.mes = 6; inicio.mes <= final.mes;)
+    {
+        if(inicio.mes == 6) {
+            inicio.diaMax = 30;
+        }
+        if(inicio.mes == 7) {
+            inicio.diaMax = 31;
+        }
+        if(inicio.mes == 9) {
+            inicio.diaMax = 30;
+        }
+        if(inicio.mes == 10) {
+            inicio.diaMax = 31;
+        }
+        for (int n = inicio.dia; n <= inicio.diaMax; n + 7)
+        {
+            if (n >= inicio.diaMax)
+            {
+                aux = n - inicio.diaMax;
+                inicio.mes++;
+                primeiraSegunda = aux;
+            }
+            primeiraSegunda = n;
+            contAula++;
         }
     }
-    }
-
-
-
-
-
-
-
+}
 
 int main(){
     int dias_de_aula;
