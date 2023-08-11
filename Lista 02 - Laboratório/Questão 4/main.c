@@ -19,6 +19,7 @@ void isPerfect(int parametro){
     int soma = 0;
     for(int i = 0; i <= parametro; i++){
         Vector * fatores = (Vector*) malloc(sizeof(Vector));
+        fatores = NULL;
         for(int j = 0; j < i; j++){
             if(i % j == 0){
                 insere(fatores, j);
