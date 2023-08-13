@@ -1,48 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct vector {
+typedef struct fatores
+{
     int fator;
-    struct vector * no;
-}Vector;
+    struct fatores *prox_fator;
+} Fatores;
 
-Vector * insere(Vector * f, int j) {
-    Vector * novo = (Vector*) malloc(sizeof(Vector));
-    novo->fator = j;
-    novo->no = f;
+void isPerfect(int parametro)
+{
+    int soma_fatores = 0;
+    for (int i = 0; i < parametro; i++)
+    {
+        Fatores *topo = NULL;
+        for (int j = 0; j <= (i / 2); j++)
+        {
 
-    return(novo);
-}
-
-
-void isPerfect(int parametro){
-    int soma = 0;
-    for(int i = 0; i <= parametro; i++){
-        Vector * fatores = (Vector*) malloc(sizeof(Vector));
-        fatores = NULL;
-        for(int j = 0; j < i; j++){
-            if(i % j == 0){
-                insere(fatores, j);
-                soma += j;
+            if (j == 0)
+            {
+                continue;
             }
-        }
-        if(soma == i){
-            for(;fatores->no != NULL; fatores = fatores->no) {
-                printf("%d +", fatores->fator);
-                if(fatores->no == NULL) {
-                    printf("%d = ", fatores->fator);
-                    printf("%d\n\n", soma);
+            else if(i % j == 0){
+                    soma_fatores += j;
+                    Fatores *novo_no = (Fatores *)malloc(sizeof(Fatores *));
+                    novo_no->fator = j;
+                    novo_no->prox_fator = topo;
+                    topo = novo_no;
                 }
+        }
+        if ((soma_fatores - 1) == (i - 1))
+        {
+            printf("Os fatores do número %i são:\t", i);
+            Fatores *current = topo;
+            while (current != NULL)
+            {
+                printf("%i\t", current->fator);
+                current = current->prox_fator;
             }
         }
-        soma = 0;
-        free(fatores);
+        Fatores *current = topo;
+        while (current != NULL)
+        {
+            struct Node *temp = current;
+            current = current->prox_fator;
+            free(temp);
+        }
+        soma_fatores = 0;
     }
 }
 
-
-
-int main(){
+int main()
+{
     int numero = 50;
     isPerfect(numero);
 
