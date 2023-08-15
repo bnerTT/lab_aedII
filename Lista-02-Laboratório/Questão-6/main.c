@@ -13,13 +13,31 @@ int inverterNumero(int valor) {
     return inverso;
 }
 
-int recursivo(int valor) {
-    if(valor == 0) {
-        return(0);
+#include <stdio.h>
+
+int inverterRecursivo(int numero) {
+    if (numero == 0) {
+        return 0;
     }
 
-    return()
+    return numero % 10 + 10 * inverterRecursivo(numero / 10);
 }
+
+int main() {
+    int numero, inverso;
+
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &numero);
+
+    inverso = inverterRecursivo(numero);
+
+    printf("O numero invertido: %d\n", inverso);
+
+    return 0;
+}
+
+
+
 
 int main(void) {
     int valor, inverso;
