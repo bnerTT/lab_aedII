@@ -23,22 +23,6 @@ int inverterRecursivo(int numero) {
     return numero % 10 + 10 * inverterRecursivo(numero / 10);
 }
 
-int main() {
-    int numero, inverso;
-
-    printf("Digite um numero inteiro: ");
-    scanf("%d", &numero);
-
-    inverso = inverterRecursivo(numero);
-
-    printf("O numero invertido: %d\n", inverso);
-
-    return 0;
-}
-
-
-
-
 int main(void) {
     int valor, inverso;
     printf("Digite um valor inteiro: ");
